@@ -1,0 +1,61 @@
+﻿<Window x:Class="tema3.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:local="clr-namespace:tema3.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="DarkSeaGreen"/>
+        </Grid.Background>
+        <TextBlock HorizontalAlignment="Left" Margin="132,82,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Height="53" Width="125" FontSize="36" FontFamily="courier new
+                   " FontWeight="Bold" Foreground="SaddleBrown" RenderTransformOrigin="-1.206,0.48">
+
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="34,180,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Height="36" Width="124" FontSize="20" FontFamily="Courier New" FontWeight="Bold" Foreground="SaddleBrown"/>
+        <TextBlock HorizontalAlignment="Left" Margin="34,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="125" FontSize="20" FontFamily="Courier New" FontWeight="Bold"><Run Foreground="SaddleBrown" Text="Password"/></TextBlock>
+        <TextBox x:Name="txtUsername" Width="200" HorizontalAlignment="Left"
+            Text ="{Binding Username,  UpdateSourceTrigger=PropertyChanged}"  Margin="145,167,0,221" FontSize="18" FontFamily="Courier New" />
+        <TextBox x:Name="txtPassword" Width="200" HorizontalAlignment="Left"
+           Text ="{Binding Password,  UpdateSourceTrigger=PropertyChanged}" Margin="145,243,0,146" FontSize="18"  FontFamily="/tema3;component/Resources/#Password" />
+        <Button Content="Login as profesor" HorizontalAlignment="Left" Margin="530,0,0,194" VerticalAlignment="Bottom" Width="196"
+                Command="{Binding OpenWindowCommand}" CommandParameter="1" Height="57" FontFamily="Courier New" FontSize="18" FontWeight="Bold" Foreground="FloralWhite">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF254E7C" Offset="0"/>
+                    <GradientStop Color="#FF89E6EB" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Login as admin" HorizontalAlignment="Left" Margin="530,275,0,0" VerticalAlignment="Top" Width="196"
+            Command="{Binding OpenWindowCommand}" CommandParameter="3" Height="63" FontFamily="Courier New" FontSize="18" FontWeight="Bold" Foreground="FloralWhite">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF254E7C" Offset="1"/>
+                    <GradientStop Color="#FF89E6EB"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock HorizontalAlignment="Center" Margin="0,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="456" FontSize="18" FontFamily="Courier New"  Foreground="#FFEA0D0D" TextAlignment="Center" Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Login as elev" HorizontalAlignment="Left" Margin="530,0,0,292" VerticalAlignment="Bottom" Width="196"
+            Command="{Binding OpenWindowCommand}" CommandParameter="2" Height="60" FontFamily="Courier New" FontSize="18" FontWeight="Bold" Foreground="FloralWhite" RenderTransformOrigin="0.617,0.518">
+
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF254E7C" Offset="0"/>
+                    <GradientStop Color="#FF89E6EB" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <CheckBox IsChecked="{Binding Dirig, UpdateSourceTrigger=PropertyChanged}" Content="Diriginte" HorizontalAlignment="Left" Margin="841,276,0,0" VerticalAlignment="Top" FontFamily="Courier New" FontSize="16" FontWeight="Bold" Foreground="#FFFAF4F4"/>
+
+
+    </Grid>
+</Window>

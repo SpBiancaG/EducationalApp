@@ -1,0 +1,97 @@
+﻿<Window x:Class="tema3.Views.AbsenteElevView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:tema3.ViewModels"
+        xmlns:localConverter="clr-namespace:tema3.Converters"
+        mc:Ignorable="d"
+        Title="AbsenteElevView" Height="450" Width="877.636">
+    <Window.DataContext>
+        <local:AbsentaElevVM />
+    </Window.DataContext>
+    <Grid Margin="0,0,-6.6,-3">
+        <Grid.Background>
+            <SolidColorBrush Color="DarkSeaGreen"/>
+        </Grid.Background>
+        <Grid.Resources>
+            <localConverter:AbsentaElevConvert x:Key="absentaConvert" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="42,87,0,0" TextWrapping="Wrap" Text="Nume elev" VerticalAlignment="Top" Height="31" Width="83" FontSize="14" FontFamily="Courier New" FontWeight="Bold" Foreground="SaddleBrown"/>
+        <TextBox x:Name="txtElevN" Width="142" HorizontalAlignment="Left"
+            Text ="{Binding SelectedItem.ElevN, ElementName=absenteGrid, UpdateSourceTrigger=PropertyChanged}"  Margin="125,82,0,310.2" FontSize="16" FontFamily="Courier New" />
+        <TextBlock HorizontalAlignment="Left" Margin="14,119,0,0" TextWrapping="Wrap" Text="Prenume elev" VerticalAlignment="Top" Height="31" Width="111" FontSize="14" FontFamily="Courier New" FontWeight="Bold" Foreground="SaddleBrown"/>
+        <TextBox x:Name="txtElevP" Width="142" HorizontalAlignment="Left"
+            Text ="{Binding SelectedItem.ElevP, ElementName=absenteGrid, UpdateSourceTrigger=PropertyChanged}"  Margin="125,119,0,273.2" FontSize="16" FontFamily="Courier New" />
+
+        <DataGrid x:Name="absenteGrid"  Margin="288,19,121,173" AutoGenerateColumns="False"
+            ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding AbsenteListElev, UpdateSourceTrigger=PropertyChanged}" FontFamily="Courier New" Background="FloralWhite" BorderBrush="#FF0877E4" Foreground="SaddleBrown" RenderTransformOrigin="0.5,0.5" FontSize="11">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.057"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}" />
+                <DataGridTextColumn Header="Nume elev" Binding="{Binding ElevN}" />
+                <DataGridTextColumn Header="Prenume elev" Binding="{Binding ElevP}" />
+                <DataGridTextColumn Header="Materie" Binding="{Binding Materie}" />
+                <DataGridTextColumn Header="Motivata" Binding="{Binding Motivata}" />
+                <DataGridTextColumn Header="Motivabila" Binding="{Binding Motivabila}" />
+                <DataGridTextColumn Header="Semestru" Binding="{Binding Semestru}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <Button Content="Vezi absente"  FontFamily="Courier New" FontSize="18" FontWeight="Bold" Foreground="#FFF5F7F7" Margin="325,309,288,72.2" Command="{Binding UpdateCommand}"
+             RenderTransformOrigin="0.664,0.587" >
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource absentaConvert}">
+                    <Binding ElementName="txtElevN" Path="Text"/>
+                    <Binding ElementName="txtElevP" Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+           
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="SaddleBrown" Offset="0.511"/>
+                    <GradientStop Color="SaddleBrown" Offset="1"/>
+                    <GradientStop Color="SaddleBrown"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="⇐" HorizontalAlignment="Left" Margin="15,0,0,10" VerticalAlignment="Bottom" Width="80" 
+            Command="{Binding OpenWindowCommand}" Height="46" FontFamily="Courier New" FontSize="40" FontWeight="Bold" Foreground="FloralWhite" Click="Button_Back">
+            
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="SaddleBrown" Offset="0.511"/>
+                    <GradientStop Color="#FF802E0C" Offset="1"/>
+                    <GradientStop Color="SaddleBrown"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Margin="151,286,0,0" TextWrapping="Wrap" Text="Total absente" VerticalAlignment="Top" Height="31" Width="145" FontSize="18" FontFamily="Courier New" Foreground="#FFF7EEEE" FontWeight="Bold">
+
+        </TextBlock>
+        <TextBox x:Name="txtNrT" Width="72" HorizontalAlignment="Left"
+            Text ="{Binding NrT,  UpdateSourceTrigger=PropertyChanged}"  Margin="184,322,0,70" FontSize="16" FontFamily="Courier New" Background="FloralWhite" RenderTransformOrigin="1.118,0.314" />
+        <TextBlock HorizontalAlignment="Left" Margin="642,287,0,0" TextWrapping="Wrap" Text="Absente nemotivate" VerticalAlignment="Top" Height="39" Width="200" FontSize="18" FontFamily="Courier New" Foreground="#FFF7EEEE" FontWeight="Bold">
+
+        </TextBlock>
+        <TextBox x:Name="txtNrN" Width="72" HorizontalAlignment="Left"
+            Text ="{Binding NrN, UpdateSourceTrigger=PropertyChanged}"  Margin="706,322,0,70" FontSize="16" FontFamily="Courier New" Background="FloralWhite" TextChanged="txtNrN_TextChanged" />
+        <TextBlock HorizontalAlignment="Center" Margin="42,155,559,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="96" Width="199" FontSize="18" FontFamily="Courier New" FontWeight="Bold" Foreground="#FFEA0D0D" TextAlignment="Center" Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </Grid>
+</Window>
